@@ -64,18 +64,27 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form class="container" action="/articles/create" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">제목</label>
-                        <input type="text" class="form-control" name="title"/>
+                {{#msg}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{msg}}
+                        <button type="button" class="btn btn-close" data-dismiss="alert" aria-label="Close">Close</button>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">내용</label>
-                        <textarea class="form-control" rows="3" name="content" ></textarea>
-                    </div>
-                    <button class="btn btn-primary">Submit</button>
-                    <a href="/articles" class="btn btn-secondary">Back</a>
-                </form>
+                {{/msg}}
+                <table class="table table-bordered">
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>내용</th>
+                    </tr>
+                    {{#articleList}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td><a href="/articles/{{id}}">{{title}}</a></td>
+                            <td>{{content}}</td>
+                        </tr>
+                    {{/articleList}}
+                </table>
+                <a href="/articles/new" class="btn btn-primary">New Articles</a>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
